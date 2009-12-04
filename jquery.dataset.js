@@ -1,9 +1,9 @@
 /*!
- * jQuery dataset Plugin v1.0
- * http://outwestmedia.com/jquery-plugins/dataset/
+ * jQuery dataset Plugin
+ * http://jdsharp.com/jquery-plugins/dataset/
  * 
- * Released: 2009-10-21
- * Version: 1.1
+ * Released: 2009-10-27
+ * Version: 1.2
  * 
  * Copyright (c) 2009 Jonathan Sharp, Out West Media LLC.
  * Dual licensed under the MIT and GPL licenses.
@@ -26,6 +26,14 @@
 			return ( i > 0 ? n.substr(0, 1).toUpperCase() + n.substr(1) : n );
 		}).join('');
 	}
+	
+	$.fn.datasets = function() {
+		var sets = [];
+		this.each(function() {
+			sets.push( $(this).dataset() );
+		});
+		return sets;
+	};
 
 	$.fn.dataset = function(attr, value) {
 		// Read all of our attributes and only return ones that start with data-
@@ -79,5 +87,51 @@
 				$(_this).removeAttr( encodeName(n) )
 			});	
 		});
+	};
+	
+	function generateSelector(attr, value, comparison) {
+		if ( arguments.length == 0 ) {
+			attr = value = '';
+			comparison = '*=';
+		} else if ( arguments.length == 1 ) {
+			value = '';
+			comparison = '*=';
+		} else if ( arguments.length == 2 ) {
+			comparison = '=';
+		}
+		name = encodeName( attr );
+		var selector = name + comparison + value;
+		if ( selector == '' ) {
+			return '';
+		}
+		return '[' + selector + ']';
+	}
+	
+	function executeFindOfFilter(type, args) {
+		// Multiple attribute seletions
+		if ( typeof args[0] == 'object' ) {
+			var selector = '';
+			for ( var i = 0; i < args.length; i++ ) {
+				selector += generateSelector.apply({}, args[i] );
+			}
+			if ( selector == '' ) {
+				return this.pushStack( [] );
+			}
+			return this[type]( selector );
+		}
+		var selector = generateSelector.apply({}, args);
+		log('Selector: ' + selector);
+		if ( selector == '' ) {
+			return this.pushStack( [] );
+		}
+		return this[type]( selector );
+	}
+	
+	$.fn.datasetFilter = function() {
+		return executeFindOfFilter.call(this, 'filter', arguments);
+	};
+	
+	$.fn.datasetFind = function(attr, value, comparison) {
+		return executeFindOfFilter.call(this, 'find', arguments);
 	};
 })(jQuery);
