@@ -1,7 +1,7 @@
 # Update: Recommendations
 
 Since this plugin has written a number of versions of jQuery have been released. I'd recommend using 
-[http://api.jquery.com/data/](jQuery's .data()) method first as it contains most of the functionality included 
+[jQuery's .data()](http://api.jquery.com/data/) method first as it contains most of the functionality included 
 in this plugin.
 
 
