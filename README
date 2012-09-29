@@ -1,3 +1,12 @@
+# Update: Recommendations
+
+Since this plugin has written a number of versions of jQuery have been released. I'd recommend using 
+[http://api.jquery.com/data/](jQuery's .data()) method first as it contains most of the functionality included 
+in this plugin.
+
+
+
+# Overview
 The dataset plugin provides an easy way to work with html5 data-* attributes.
 
 <div data-first-name="Jonathan" data-last-name="Sharp"></div>
