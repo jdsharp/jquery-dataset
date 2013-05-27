@@ -1,9 +1,8 @@
-# Update: Recommendations
+# Welcome
 
-Since this plugin has written a number of versions of jQuery have been released. I'd recommend using 
-[jQuery's .data()](http://api.jquery.com/data/) method first as it contains most of the functionality included 
-in this plugin.
-
+This plugin was originally authored in 2008 prior to jQuery having built in .data() functionality. This 
+repository is being left public for archival purposes. The recommended best practice is to use 
+[jQuery's .data()](http://api.jquery.com/data/) method.
 
 
 # Overview
